@@ -1,18 +1,12 @@
 import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
-import {Button} from '../components/Button';
+import {Webstore} from '../sections/Webstore';
 
 export const Home = () => {
   return (
     <View style={styles.container}>
-      <Text>Something here</Text>
-      <Button
-        text="click here"
-        onPress={() => {
-          console.log('button was clicked');
-        }}
-      />
+      <Webstore />
     </View>
   );
 };
