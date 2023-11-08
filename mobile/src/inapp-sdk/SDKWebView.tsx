@@ -10,7 +10,7 @@ export const TOKEN = '<<--WEB_INAPP_SDK-->>'; // same token as web
 export const SDKWebView: React.FC<SDKWebViewProps> = props => {
   const eventHub = useEventHub();
 
-  const handleInvoke = command => {
+  const handleInvoke = (command: any) => {
     const [method, params = []] = JSON.parse(command.args);
 
     // dispatch call of method

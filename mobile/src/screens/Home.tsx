@@ -21,27 +21,24 @@ export const Home = () => {
   };
 
   useEffect(() => {
+    eventHub.subscribe('openFullscreen', () => {
+      setFullscreen(true);
+    });
+
     eventHub.subscribe('closeFullscreen', () => {
       setFullscreen(false);
       setShow(false);
     });
 
     return () => {
+      eventHub.unsubscribe('openFullscreen');
       eventHub.unsubscribe('closeFullscreen');
     };
   }, []);
 
   return (
     <View style={styles.container}>
-      <Webstore
-        onBuyButtonClick={() => {
-          setShow(true);
-
-          setTimeout(() => {
-            setFullscreen(true);
-          }, 1500);
-        }}
-      />
+      <Webstore onBuyButtonClick={() => setShow(true)} />
 
       <SlideUpPane show={show} height={fullscreen ? dimensions.height : 280}>
         <SDKWebView
