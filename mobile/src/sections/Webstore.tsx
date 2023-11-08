@@ -4,7 +4,7 @@ import {Image, View, Text, StyleSheet} from 'react-native';
 import {Button} from '../components/Button';
 import {product} from '../data';
 
-export const Webstore = () => {
+export const Webstore = ({onBuyButtonClick}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>my webstore</Text>
@@ -25,6 +25,7 @@ export const Webstore = () => {
         text="BUY NOW"
         onPress={() => {
           console.log('button was clicked');
+          onBuyButtonClick();
         }}
       />
     </View>
