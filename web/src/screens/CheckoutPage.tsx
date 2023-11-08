@@ -20,7 +20,9 @@ export const CheckoutPage = () => {
       <h1>CheckoutPage</h1>
       {showStartScreen(state.value) && <Start />}
       {state.matches('paymentAuthorized') && <PaymentAuthorized />}
-      {state.matches('authorizationDeclined') && <AuthorizationError />}
+      {state.matches('authorizationDeclined') && (
+        <AuthorizationError type="declined" />
+      )}
 
       <div className="text-center text-red-500 font-bold">
         debug: {state.value}
