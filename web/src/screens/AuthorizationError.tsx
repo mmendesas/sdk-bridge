@@ -34,6 +34,7 @@ export const AuthorizationError = ({ type }: AuthorizationErrorProps) => {
         className="btn bg-black"
         onClick={() => {
           sendMessageToNative('closeFullscreen');
+          sendMessageToNative('error', { type });
         }}
       >
         Close
