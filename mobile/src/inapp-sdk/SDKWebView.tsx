@@ -33,12 +33,16 @@ export const SDKWebView: React.FC<SDKWebViewProps> = props => {
       {...props}
       style={styles.container} //
       onMessage={handleMessage}
+      startInLoadingState={true}
     />
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    height: '100%',
+    width: '100%',
     elevation: 2,
   },
 });

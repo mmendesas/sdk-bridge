@@ -48,11 +48,12 @@ export const SlideUpPane: React.FC<SlideUpProps> = ({
 
 const styles = StyleSheet.create({
   bottomPane: {
+    flex: 1,
     position: 'absolute',
     width: '100%',
+    height: '100%',
     zIndex: 3,
     elevation: 10,
-    backgroundColor: '#afaffa',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
   },
