@@ -1,4 +1,5 @@
 import { CrossIcon } from '../components';
+import { sendMessageToNative } from '../web-sdk';
 
 const AuthDeclined = () => {
   return (
@@ -29,7 +30,12 @@ export const AuthorizationError = ({ type }: AuthorizationErrorProps) => {
       {type === 'expired' && <AuthExpired />}
 
       <CrossIcon />
-      <button className="btn bg-black" onClick={() => {}}>
+      <button
+        className="btn bg-black"
+        onClick={() => {
+          sendMessageToNative('closeFullscreen');
+        }}
+      >
         Close
       </button>
     </div>
