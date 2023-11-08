@@ -12,7 +12,6 @@ export const Home = () => {
   const [fullscreen, setFullscreen] = useState(false);
 
   const eventHub = useEventHub();
-
   const dimensions = useWindowDimensions();
 
   const handleNavigationChange = (navState: WebViewNavigation) => {

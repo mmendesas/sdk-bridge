@@ -14,7 +14,7 @@ export const Webstore: React.FC<WebstoreProps> = ({onBuyButtonClick}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>my webstore</Text>
+      <Text style={styles.title}>| greenstore |</Text>
       <Text style={styles.cardTitle}>Winter SALE</Text>
 
       <View style={styles.card}>
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   card: {
     width: '70%',
     height: 380,
-    backgroundColor: '#cdf4f6',
+    backgroundColor: '#afdee3',
     borderRadius: 20,
     display: 'flex',
     alignItems: 'center',
