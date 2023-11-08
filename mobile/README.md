@@ -1,5 +1,12 @@
 # SDK-bridge (mobile)
 
+Mobile native app implementation of SDK-Bridge
+
+### Features
+
+- Fake webstore page with one product
+- `inapp-sdk` implementation to enable communication with `web-sdk`
+
 ### Getting started
 
 Start your native application
