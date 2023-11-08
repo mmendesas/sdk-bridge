@@ -19,5 +19,6 @@ body {
     color: white;
     font-weight: bold;
     text-transform: uppercase;
+    width: 100%;
   }
 }
