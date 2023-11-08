@@ -1,17 +1,21 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import WebView, {WebViewMessageEvent, WebViewProps} from 'react-native-webview';
+import {useEventHub} from './useEventHub';
 
 type SDKWebViewProps = WebViewProps;
 
 export const TOKEN = '<<--WEB_INAPP_SDK-->>'; // same token as web
 
 export const SDKWebView: React.FC<SDKWebViewProps> = props => {
+  const eventHub = useEventHub();
+
   const handleInvoke = command => {
     const [method, params = []] = JSON.parse(command.args);
 
     // dispatch call of method
     console.log(`[inapp-sdk] calling method: ${method}`);
+    eventHub.dispatch(method, params);
   };
 
   const handleMessage = (event: WebViewMessageEvent) => {

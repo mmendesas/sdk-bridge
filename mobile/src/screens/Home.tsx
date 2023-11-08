@@ -1,14 +1,17 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, useWindowDimensions} from 'react-native';
 import {WebViewNavigation} from 'react-native-webview';
 
 import {Webstore} from '../sections/Webstore';
-import {SDKWebView} from '../lib/SDKWebView';
+import {SDKWebView} from '../inapp-sdk/SDKWebView';
 import {SlideUpPane} from '../components/SlideUp';
+import {useEventHub} from '../inapp-sdk/useEventHub';
 
 export const Home = () => {
   const [show, setShow] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
+
+  const eventHub = useEventHub();
 
   const dimensions = useWindowDimensions();
 
@@ -16,6 +19,17 @@ export const Home = () => {
     const {url, title} = navState;
     console.log(`[inapp-sdk] - navigation change: ${url}-${title}`);
   };
+
+  useEffect(() => {
+    eventHub.subscribe('closeFullscreen', () => {
+      setFullscreen(false);
+      setShow(false);
+    });
+
+    return () => {
+      eventHub.unsubscribe('closeFullscreen');
+    };
+  }, []);
 
   return (
     <View style={styles.container}>
