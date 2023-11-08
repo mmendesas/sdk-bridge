@@ -21,7 +21,14 @@ export const paymentMachine = createMachine({
         },
       },
     },
-    detailsFetched: {},
+    detailsFetched: {
+      on: {
+        DISMISS: 'authorizationDeclined',
+        APPROVE: 'paymentAuthorized',
+      },
+    },
     preReqNotMet: { type: 'final' },
+    paymentAuthorized: { type: 'final' },
+    authorizationDeclined: { type: 'final' },
   },
 });

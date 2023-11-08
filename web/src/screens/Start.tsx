@@ -2,7 +2,7 @@ import { Spinner } from '../components/Spinner';
 import { usePayment } from '../context/PaymentProvider';
 
 export const Start = () => {
-  const [state] = usePayment();
+  const [state, send] = usePayment();
 
   const isLoading =
     state.matches('initial') || state.matches('fetchPaymentDetails');
@@ -27,10 +27,16 @@ export const Start = () => {
             Pay EUR 100.00 to Amazon from card ending in ***0512 ?
           </span>
           <div className="flex gap-2 w-[60%]">
-            <button className="btn bg-[#99B080]" onClick={() => {}}>
+            <button
+              className="btn bg-[#99B080]"
+              onClick={() => send('APPROVE')}
+            >
               Approve
             </button>
-            <button className="btn bg-[#F9B572]" onClick={() => {}}>
+            <button
+              className="btn bg-[#F9B572]"
+              onClick={() => send('DISMISS')}
+            >
               Decline
             </button>
           </div>
