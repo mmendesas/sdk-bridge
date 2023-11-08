@@ -12,10 +12,14 @@ export const Button: React.FC<ButtonProps> = ({
   onPress,
   text,
 }) => {
+  const disabledButton = {
+    backgroundColor: disabled ? '#bbb' : 'teal',
+  };
+
   return (
     <TouchableOpacity
+      style={[styles.button, disabledButton]}
       disabled={disabled}
-      style={styles.button}
       onPress={onPress}>
       <Text style={styles.text}>{text}</Text>
     </TouchableOpacity>
@@ -29,7 +33,6 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 32,
     borderRadius: 4,
-    // elevation: 1,
     backgroundColor: 'teal',
     width: '70%',
   },

@@ -1,38 +1,45 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Image, View, Text, StyleSheet} from 'react-native';
 
 import {Button} from '../components/Button';
 import {product} from '../data';
+import {ErrorMessage} from '../components/ErrorMessage';
 
-export const Webstore = ({onBuyButtonClick}) => {
+type WebstoreProps = {
+  onBuyButtonClick: () => void;
+};
+
+export const Webstore: React.FC<WebstoreProps> = ({onBuyButtonClick}) => {
+  const [hasError, setHasError] = useState(false);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>my webstore</Text>
       <Text style={styles.cardTitle}>Winter SALE</Text>
 
       <View style={styles.card}>
-        <Image
-          source={product.img}
-          resizeMode="cover"
-          style={{height: '80%'}}
-        />
-
+        <Image source={product.img} resizeMode="cover" style={styles.image} />
         <Text style={styles.cardTitle}>{product.name}</Text>
         <Text style={styles.cardPrice}>{product.price}</Text>
       </View>
 
       <Button
+        disabled={hasError}
         text="BUY NOW"
         onPress={() => {
-          console.log('button was clicked');
           onBuyButtonClick();
         }}
       />
+
+      <ErrorMessage onError={() => setHasError(true)} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  image: {
+    height: '80%',
+  },
   container: {
     flex: 1,
     display: 'flex',
