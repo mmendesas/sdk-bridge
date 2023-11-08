@@ -9,5 +9,15 @@
 }
 
 body {
-  background-color: rgb(251, 240, 226);
+  background-color: #FAF8ED;
+}
+
+@layer components {
+  .btn {
+    padding: .7rem 2rem;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
 }

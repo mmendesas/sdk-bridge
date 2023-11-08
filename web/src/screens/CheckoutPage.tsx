@@ -43,9 +43,13 @@ export const CheckoutPage = () => {
         <div>
           <h2>Authorize Payment</h2>
           <span>Pay EUR 100.00 to Amazon from card ending in ***0512 ?</span>
-          <div>
-            <button>Approve</button>
-            <button>Decline</button>
+          <div className="flex flex-col gap-2">
+            <button className="btn bg-[#99B080]" onClick={() => {}}>
+              Approve
+            </button>
+            <button className="btn bg-[#F9B572]" onClick={() => {}}>
+              Decline
+            </button>
           </div>
         </div>
       )}
