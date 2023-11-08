@@ -23,21 +23,36 @@ export const CheckoutPage = () => {
   });
 
   const isLoading =
-    state.matches('checkPrerequisites') ||
-    state.matches('fetchingPaymentDetails');
+    state.matches('initial') || state.matches('fetchPaymentDetails');
+
+  const message = state.matches('initial')
+    ? 'Checking information...'
+    : 'Fetching payment details...';
 
   console.log('state', state.value);
 
   return (
     <div>
       <h1>CheckoutPage</h1>
-      {isLoading && <div>Loading...</div>}
+      {isLoading ? (
+        <div>
+          <Spinner />
+          <span>{message}</span>
+        </div>
+      ) : (
+        <div>
+          <h2>Authorize Payment</h2>
+          <span>Pay EUR 100.00 to Amazon from card ending in ***0512 ?</span>
+          <div>
+            <button>Approve</button>
+            <button>Decline</button>
+          </div>
+        </div>
+      )}
 
-      <Spinner />
       {state.matches('initial') && <div>pre req</div>}
       {state.matches('fetchPaymentDetails') && <div>fetch details</div>}
       {state.matches('detailsFetched') && <div>detailsFetched</div>}
-      <div>something</div>
     </div>
   );
 };
