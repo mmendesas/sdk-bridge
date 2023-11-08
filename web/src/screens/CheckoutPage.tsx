@@ -1,26 +1,8 @@
-import { useMachine } from '@xstate/react';
-
-import { paymentMachine } from '../paymentMachine';
-import { sleep } from '../utils';
 import { Spinner } from '../components/Spinner';
+import { usePayment } from '../context/PaymentProvider';
 
 export const CheckoutPage = () => {
-  const [state, send] = useMachine(paymentMachine, {
-    services: {
-      checkPrerequisites: async () => {
-        console.log('>>> check pre req');
-        await sleep(2000);
-        return Promise.resolve({ ok: true });
-      },
-      fetchPaymentDetails: async () => {
-        console.log('>>> fetch details');
-        await sleep(3000);
-        return Promise.resolve({
-          something: 123,
-        });
-      },
-    },
-  });
+  const [state] = usePayment();
 
   const isLoading =
     state.matches('initial') || state.matches('fetchPaymentDetails');
@@ -29,7 +11,7 @@ export const CheckoutPage = () => {
     ? 'Checking information...'
     : 'Fetching payment details...';
 
-  console.log('state', state.value);
+  // console.log('state', state.value);
 
   return (
     <div>
