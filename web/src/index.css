@@ -8,6 +8,11 @@
   box-sizing: border-box;
 }
 
+html, body, #root, #root > main { 
+  height: 100%;
+  width: 100%;
+}
+
 body {
   background-color: #FAF8ED;
 }

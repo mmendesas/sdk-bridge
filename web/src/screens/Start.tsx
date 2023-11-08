@@ -14,12 +14,12 @@ export const Start = () => {
   return (
     <div>
       {isLoading ? (
-        <div className="flex flex-col justify-center items-center gap-4">
+        <div className="flex flex-col justify-center items-center gap-5">
           <Spinner />
           <span>{message}</span>
         </div>
       ) : (
-        <div className="flex flex-col justify-center items-center gap-3">
+        <div className="flex flex-col justify-center items-center gap-6">
           <h2 className="text-2xl font-bold">Authorize Payment</h2>
           <Timer />
           <span className="w-[70%] text-xl text-center">
