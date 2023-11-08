@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  useWindowDimensions,
+} from 'react-native';
 import {WebViewNavigation} from 'react-native-webview';
 
 import {Webstore} from '../sections/Webstore';
@@ -8,6 +14,9 @@ import {SlideUpPane} from '../components/SlideUp';
 
 export const Home = () => {
   const [show, setShow] = useState(false);
+  const [fullscreen, setFullscreen] = useState(false);
+
+  const dimensions = useWindowDimensions();
 
   const handleNavigationChange = (navState: WebViewNavigation) => {
     const {url, title} = navState;
@@ -19,10 +28,14 @@ export const Home = () => {
       <Webstore
         onBuyButtonClick={() => {
           setShow(true);
+
+          setTimeout(() => {
+            setFullscreen(true);
+          }, 1500);
         }}
       />
 
-      <SlideUpPane show={show} height={280}>
+      <SlideUpPane show={show} height={fullscreen ? dimensions.height : 280}>
         <SDKWebView
           source={{uri: 'http://localhost:5173'}}
           javaScriptEnabled={true}
