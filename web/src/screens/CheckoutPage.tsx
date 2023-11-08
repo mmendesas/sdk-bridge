@@ -1,9 +1,18 @@
+import { Debug } from '../components';
 import { usePayment } from '../context/PaymentProvider';
 import { AuthorizationError } from './AuthorizationError';
 import { PaymentAuthorized } from './PaymentAuthorized';
 import { Start } from './Start';
 
-export const CheckoutPage = () => {
+type Config = {
+  debug: boolean;
+};
+
+type CheckoutPageProps = {
+  config?: Config;
+};
+
+export const CheckoutPage: React.FC<CheckoutPageProps> = ({ config }) => {
   const [state] = usePayment();
 
   const showStartScreen = (state: string) => {
@@ -11,8 +20,6 @@ export const CheckoutPage = () => {
       ['initial', 'fetchPaymentDetails', 'detailsFetched'].indexOf(state) > -1
     );
   };
-
-  console.log('state', state.value, showStartScreen(state.value));
 
   return (
     <div>
@@ -25,10 +32,7 @@ export const CheckoutPage = () => {
         <AuthorizationError type="expired" />
       )}
 
-      <div className="text-center text-red-500 font-bold flex flex-col">
-        <span>debug: {state.value}</span>
-        <span>debug: {JSON.stringify(state.context)}</span>
-      </div>
+      {config?.debug ? <Debug state={state} /> : null}
     </div>
   );
 };

@@ -11,8 +11,6 @@ export const Start = () => {
     ? 'Checking information...'
     : 'Fetching payment details...';
 
-  // console.log('state', state.value);
-
   return (
     <div>
       {isLoading ? (

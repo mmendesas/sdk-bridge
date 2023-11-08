@@ -5,7 +5,11 @@ function App() {
   return (
     <main className="p-20 flex flex-col">
       <PaymentProvider>
-        <CheckoutPage />
+        <CheckoutPage
+          config={{
+            debug: true,
+          }}
+        />
       </PaymentProvider>
     </main>
   );

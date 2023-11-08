@@ -1,11 +1,11 @@
-import { createMachine } from 'xstate';
+import { assign, createMachine } from 'xstate';
 
 export const paymentMachine = createMachine(
   {
     id: 'paymentAuthentication',
     initial: 'initial',
     context: {
-      expiresON: new Date(Date.now() + 15000),
+      expiresON: null,
     },
     states: {
       initial: {
@@ -22,6 +22,7 @@ export const paymentMachine = createMachine(
           src: 'fetchPaymentDetails',
           onDone: {
             target: 'detailsFetched',
+            actions: assign((_ctx, event) => event.data),
           },
         },
       },
@@ -45,8 +46,8 @@ export const paymentMachine = createMachine(
   {
     delays: {
       AUTHORIZATION_EXPIRES: (ctx) => {
-        console.log('authorization expires', ctx);
-        return Math.max(ctx.expiresON - new Date(), 0);
+        if (!ctx.expiresON) return 0;
+        return Math.max(ctx.expiresON - Number(new Date()), 0);
       },
     },
   }

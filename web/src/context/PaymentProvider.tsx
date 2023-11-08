@@ -26,12 +26,10 @@ export const PaymentProvider: React.FC<PaymentProviderProps> = ({
   const machine = useMachine(paymentMachine, {
     services: {
       checkPrerequisites: async () => {
-        console.log('>>> check pre req');
         await sleep(2000);
         return Promise.resolve({ ok: true });
       },
       fetchPaymentDetails: async () => {
-        console.log('>>> fetch details');
         await sleep(3000);
         return Promise.resolve({
           something: 123,
