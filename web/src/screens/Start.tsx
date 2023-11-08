@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 import { Spinner, Timer } from '../components';
 import { usePayment } from '../context/PaymentProvider';
+import { sendMessageToNative } from '../web-sdk';
 
 export const Start = () => {
   const [state, send] = usePayment();
@@ -10,6 +12,16 @@ export const Start = () => {
   const message = state.matches('initial')
     ? 'Checking information...'
     : 'Fetching payment details...';
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      sendMessageToNative('openFullscreen');
+    }, 1500);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
 
   return (
     <div>
