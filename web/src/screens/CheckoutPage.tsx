@@ -2,6 +2,7 @@ import { useMachine } from '@xstate/react';
 
 import { paymentMachine } from '../paymentMachine';
 import { sleep } from '../utils';
+import { Spinner } from '../components/Spinner';
 
 export const CheckoutPage = () => {
   const [state, send] = useMachine(paymentMachine, {
@@ -31,6 +32,8 @@ export const CheckoutPage = () => {
     <div>
       <h1>CheckoutPage</h1>
       {isLoading && <div>Loading...</div>}
+
+      <Spinner />
       {state.matches('initial') && <div>pre req</div>}
       {state.matches('fetchPaymentDetails') && <div>fetch details</div>}
       {state.matches('detailsFetched') && <div>detailsFetched</div>}
