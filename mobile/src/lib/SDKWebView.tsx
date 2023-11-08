@@ -1,11 +1,15 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import WebView, {WebViewProps} from 'react-native-webview';
+import WebView, {WebViewMessageEvent, WebViewProps} from 'react-native-webview';
 
 type SDKWebViewProps = WebViewProps;
 
 export const SDKWebView: React.FC<SDKWebViewProps> = props => {
-  const handleMessage = () => {};
+  const handleMessage = (event: WebViewMessageEvent) => {
+    const {data} = event.nativeEvent;
+
+    console.log('[inapp-sdk]: listener >>', data);
+  };
 
   return (
     <WebView

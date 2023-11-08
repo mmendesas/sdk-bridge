@@ -1,11 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  useWindowDimensions,
-} from 'react-native';
+import {View, StyleSheet, useWindowDimensions} from 'react-native';
 import {WebViewNavigation} from 'react-native-webview';
 
 import {Webstore} from '../sections/Webstore';
