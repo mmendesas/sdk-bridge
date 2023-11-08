@@ -35,6 +35,7 @@ export const PaymentProvider: React.FC<PaymentProviderProps> = ({
         await sleep(3000);
         return Promise.resolve({
           something: 123,
+          expiresON: new Date(Date.now() + 15000),
         });
       },
     },

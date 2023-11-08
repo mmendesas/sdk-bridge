@@ -1,6 +1,6 @@
 import { CrossIcon } from '../components';
 
-export const AuthDeclined = () => {
+const AuthDeclined = () => {
   return (
     <div className="text-center flex flex-col gap-4">
       <h2 className="text-2xl font-bold">Authorization Declined</h2>
@@ -9,14 +9,24 @@ export const AuthDeclined = () => {
   );
 };
 
+const AuthExpired = () => {
+  return (
+    <div className="text-center flex flex-col gap-4">
+      <h2 className="text-2xl font-bold">Authorization Expired</h2>
+      <span>Payment authorization has been expired after timeout</span>
+    </div>
+  );
+};
+
 type AuthorizationErrorProps = {
-  type: 'declined';
+  type: 'declined' | 'expired';
 };
 
 export const AuthorizationError = ({ type }: AuthorizationErrorProps) => {
   return (
     <div className="flex flex-col justify-between items-center gap-5">
       {type === 'declined' && <AuthDeclined />}
+      {type === 'expired' && <AuthExpired />}
 
       <CrossIcon />
       <button className="btn bg-black" onClick={() => {}}>

@@ -1,4 +1,4 @@
-import { Spinner } from '../components/Spinner';
+import { Spinner, Timer } from '../components';
 import { usePayment } from '../context/PaymentProvider';
 
 export const Start = () => {
@@ -23,6 +23,7 @@ export const Start = () => {
       ) : (
         <div className="flex flex-col justify-center items-center gap-3">
           <h2 className="text-2xl font-bold">Authorize Payment</h2>
+          <Timer />
           <span className="w-[70%] text-xl text-center">
             Pay EUR 100.00 to Amazon from card ending in ***0512 ?
           </span>
